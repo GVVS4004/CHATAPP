@@ -54,7 +54,8 @@ export const connectingWithContract = async ()=>{
 }
 
 export const convertTime = (time)=>{
-    const newTime = new Date(time.toNumber());
-    const realTIme = newTime.getHours()+"/"+newTime.getMinutes()+"/"+newTime.getSeconds()+" Date:"+newTime.getDate()+"/"+(newTime.getMonth()+1)+"/"+newTime.getFullYear();
-    return realTIme;
+    const newTime = new Date(time.toNumber()*1000).toLocaleString();
+    // console.log(newTime);
+    // const realTime = newTime.getHours()+":"+newTime.getMinutes()+":"+newTime.getSeconds()+" Date:"+newTime.getDate()+"/"+(newTime.getMonth()+1)+"/"+newTime.getFullYear();
+    return newTime;
 }

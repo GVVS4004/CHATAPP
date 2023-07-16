@@ -9,9 +9,13 @@ export default function Model({openBox, title, head, info, smallInfo, image, fun
   const [name,setName] = useState("");
   const [accountAddress,setAccountAddress]= useState("");
   const { loading } = useContext(ChatAppContext);
-
+  console.log(loading);
   return (
     <div className={Style.Model}>
+      {
+            loading===true?(
+              <Loader/>
+            ):
       <div className={Style.Model_box}>
         <div className={Style.Model_box_left}>
           <Image src={image} alt="buddy" width={700} height={700} />
@@ -22,10 +26,7 @@ export default function Model({openBox, title, head, info, smallInfo, image, fun
           </h1>
           <p>{info}</p>
           <small>{smallInfo}</small>
-          {
-            loading===true?(
-              <Loader/>
-            ):(<div className={Style.Model_box_right_name}>
+          <div className={Style.Model_box_right_name}>
               <div className={Style.Model_box_right_name_info}>
                 <Image src={images.username} alt="username" width={30} height={30}/>
                 <input
@@ -43,7 +44,7 @@ export default function Model({openBox, title, head, info, smallInfo, image, fun
                 ></input>
               </div>
               <div className={Style.Model_box_right_name_btn}>
-                <button onClick={()=> functionName({name, accountAddress})}>
+                <button onClick={()=> {functionName({name, accountAddress})}}>
                   {""}
                   <Image src={images.send} alt="send" width={30} height={30} />
                   {""}
@@ -56,11 +57,10 @@ export default function Model({openBox, title, head, info, smallInfo, image, fun
                   Cancel
                 </button>
               </div>
-            </div>)
-          }  
+            </div>
+        
         </div>
-      </div>
-      {/* <Error error={error}/>; */}
+      </div>}
     </div>
   )
 }

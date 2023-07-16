@@ -8,11 +8,11 @@ import { ChatAppContext } from "@/app/context/ChatAppContext";
 import { Model, Error, Loader } from "../index";
 // import images from '../../assets';
 import images from "../../assets";
-function Navbar() {
+function Navbar({curactive}) {
   const menuItems = [
     {
       menu: "All users",
-      link: "/",
+      link: "/allusers",
     },
     {
       menu: "CHAT",
@@ -20,11 +20,7 @@ function Navbar() {
     },
     {
       menu: "CONTACT",
-      link: "/",
-    },
-    {
-      menu: "SETTINGS",
-      link: "/",
+      link: "/contactus",
     },
     {
       menu: "FAQS",
@@ -36,7 +32,7 @@ function Navbar() {
     },
   ];
 
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(curactive||2);
   const [open, setOpen] = useState(false);
   const [openModel, setOpenModel] = useState(false);
   const { account, userName, connectWallet, createAccount, error } = useContext(ChatAppContext);

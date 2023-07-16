@@ -13,7 +13,7 @@ const ChatAppProvider = ({children})=>{
     const [loading, setLoading] =useState(false);
     const [userLists, setUserLists] = useState([]);
     const [error,setError] = useState("");
-
+    const [filter,setFilter] = useState("");
 
     const [currentUserName, setCurrentUserName] = useState('');
     const [currentUserAddress ,setCurrentUserAddress] = useState("");
@@ -50,7 +50,8 @@ const ChatAppProvider = ({children})=>{
             setFriendMsg(read);
         }
         catch(error){
-            setError("Currently you have no message");
+            console.log("Currently you have no message");
+            // console.log(error);
         }
     };
     const  createAccount = async ({name,accountAddress})=>{
@@ -69,38 +70,42 @@ const ChatAppProvider = ({children})=>{
     }
     const addFriends = async({name,accountAddress})=>{
         try{
-            if (name|| accountAddress) return ("Please porvide the name and account address");
+            if (!name||!accountAddress) return setError("Please porvide the name and account address");
             const contract  =await connectingWithContract();
             const addMyFriend = await contract.addFriend(accountAddress,name);
             setLoading(true);
-            await addMyFriend().wait();
+            await addMyFriend.wait();
+            console.log("context",loading);
             setLoading(false);
             router.push("/");
             window.location.reload()
         }
         catch(error){
-            setError("Something went wrong while adding friends,please try again");
+            console.log(error);
+            setError("Check the address or the user is already a friend");
         }
     }
     const sendMessage =async ({msg,address})=>{
         try{
-            if(msg|| address) return setError("Please enter the name and address");
-
+            // if(!msg) return setError("Please tyoe your message");
+        
             const contract = await connectingWithContract();
             const addMessage = await contract.sendMessage(address,msg);
             setLoading(true);
             await addMessage.wait();
+            console.log("context",loading);
+            // window.location.reload();
             setLoading(false);
-            window.location.reload();
         }
         catch(error){
             setError("Please reload and try again");
+            console.log(error)
         }
     }
 
     const readUser = async(userAddress)=>{
         const contract =await connectingWithContract();
-        const userName = await contract.getUserName(userAddress);
+        const userName = await contract.getUsername(userAddress);
         setCurrentUserAddress(userAddress);
         setCurrentUserName(userName);
     }
@@ -108,7 +113,7 @@ const ChatAppProvider = ({children})=>{
         fetchData();
     },[]);
     return(
-        <ChatAppContext.Provider value={{readMessage, createAccount, addFriends, sendMessage, readUser, connectWallet, CheckIfWalletConnected, account, userName, friendLists, friendMsg, loading, userLists, userName, currentUserAddress, currentUserName, error}}>
+        <ChatAppContext.Provider value={{readMessage, createAccount, addFriends, sendMessage, readUser, connectWallet, CheckIfWalletConnected, setFilter, account, userName, friendLists, friendMsg, loading, userLists, userName, currentUserAddress, currentUserName, error, filter}}>
             {children}
         </ChatAppContext.Provider>
     )

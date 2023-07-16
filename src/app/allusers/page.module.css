@@ -3,10 +3,11 @@
     width: 90%;
     margin: 4rem auto;
     font-size: 1.5rem;
+    color: aliceblue;
 }
 
 .alluser{
-    width: 80%;
+    width: 90%;
     margin: 2rem auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

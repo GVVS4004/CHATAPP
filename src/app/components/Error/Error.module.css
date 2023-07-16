@@ -1,6 +1,6 @@
 .Error{
     position: fixed;
-    inset: 30% 30% 45% 30%;
+    inset: 30% 30% 40% 30%;
     margin: 0 auto;
     background-color: #121212;
     text-align: center;
@@ -9,6 +9,7 @@
     border-radius: 50px;
     background: #F18303 ;
     box-shadow: 5px 5px 10px #cd6f03, -5px -5px 10px #ff9703;
+    z-index: 111111111111111111;
 }
 
 .Error_box h1{
@@ -19,6 +20,6 @@
 
 @media only screen and (max-width: 35em){
     .Error{
-        inset: 10% 10% 55% 10%;
+        inset: 10% 10% 35% 10%;
     }
 }
