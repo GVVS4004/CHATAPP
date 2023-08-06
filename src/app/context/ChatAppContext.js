@@ -38,6 +38,7 @@ const ChatAppProvider = ({children})=>{
 
         }
         catch(error){
+            console.log("fetchData");
             setError("Please Install and connect your Wallet");
             console.log(error)
         }
@@ -50,6 +51,7 @@ const ChatAppProvider = ({children})=>{
             setFriendMsg(read);
         }
         catch(error){
+            console.log("readMessage");
             console.log("Currently you have no message");
             // console.log(error);
         }
@@ -65,6 +67,7 @@ const ChatAppProvider = ({children})=>{
             window.location.reload();
         }
         catch(error){
+            console.log("createAccount");
             setError("Error while creating your account please reload browser");
         }
     }
@@ -82,6 +85,7 @@ const ChatAppProvider = ({children})=>{
         }
         catch(error){
             console.log(error);
+            console.log("addFriends");
             setError("Check the address or the user is already a friend");
         }
     }
@@ -93,11 +97,12 @@ const ChatAppProvider = ({children})=>{
             const addMessage = await contract.sendMessage(address,msg);
             setLoading(true);
             await addMessage.wait();
-            console.log("context",loading);
+            
             // window.location.reload();
             setLoading(false);
         }
         catch(error){
+            console.log("sendMessage");
             setError("Please reload and try again");
             console.log(error)
         }

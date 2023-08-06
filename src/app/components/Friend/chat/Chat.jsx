@@ -24,16 +24,17 @@ export default function Chat({
 
   const x = 1;
   const [chatData, setChatData] = useState({
-    name: localStorage.getItem("addr")!=null?localStorage.getItem("addr"):"",
-    address: localStorage.getItem("name")!=null?localStorage.getItem("name"):"",
+    name: "",
+    address:"",
   });
   const searchParams = useSearchParams();
   useEffect(() => {
     var addr = searchParams.get("address");
     var name = searchParams.get("name");
-    readUser(addr);
-    readMessage(addr);
-    if (addr) {
+    // console.log(name);
+    if (addr!=null) {
+      readUser(addr);
+      readMessage(addr);
       setChatData((prev) => {
         return {
           name: name,
@@ -42,14 +43,19 @@ export default function Chat({
       });
       localStorage.setItem("addr",addr);
       localStorage.setItem("name",name);
-    } else {
-      setChatData((prev) => {
-        return {
-          name: localStorage.getItem('name'),
-          address: localStorage.getItem('addr'),
-        };
-      })
-      return;
+    } 
+    else{
+      if(localStorage.getItem('addr')!=null){
+        setChatData((prev)=>{
+              return {
+                name:localStorage.getItem('name'),
+                address:localStorage.getItem('addr')
+              }
+        })
+        // readUser(localStorage.getItem('addr'));
+        // readMessage(localStorage.getItem('addr'));
+      }
+
     }
   }, [searchParams.get("address"),friendMsg]);
 
