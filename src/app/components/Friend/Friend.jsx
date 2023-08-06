@@ -21,18 +21,22 @@ export default function Friend() {
     filter
   } = useContext(ChatAppContext);
   const friendData=friendLists.filter(item=> item.name.toLowerCase().includes(filter.toLowerCase()))
+  const [imgInd,setImgInd]=useState(1)
   return (
           <div className={Style.Friend}>
             <div className={Style.Friend_box}>
               <div className={Style.Friend_box_left}>
                   {friendData.map((ele,ind)=>{
                     return(
+                    <button onClick={(e)=>{setImgInd(ind)}} style={{width:"100%"}}>
                     <Card key={ind+1}
                       ele={ele}
                       ind={ind}
                       readMessage={readMessage}
                       readUser={readUser}
-                    />)
+                    />
+                    </button>
+                    )
                   })}
               </div>
               <div className={Style.Friend_box_right}>
@@ -45,6 +49,7 @@ export default function Friend() {
                       currentUserAddress={currentUserAddress}
                       currentUserName={currentUserName}
                       readUser={readUser}
+                      imgInd={imgInd}
                  />
                   
                 

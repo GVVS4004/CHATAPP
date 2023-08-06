@@ -31,7 +31,7 @@ export default function Model({openBox, title, head, info, smallInfo, image, fun
                 <Image src={images.username} alt="username" width={30} height={30}/>
                 <input
                 type="text"
-                placeholder='your name'
+                placeholder='Name'
                 onChange={(e)=>{setName(e.target.value)}}
                 ></input>
               </div>

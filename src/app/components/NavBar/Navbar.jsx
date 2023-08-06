@@ -11,7 +11,7 @@ import images from "../../assets";
 function Navbar({curactive}) {
   const menuItems = [
     {
-      menu: "All users",
+      menu: "ALL USERS",
       link: "/allusers",
     },
     {
@@ -24,11 +24,11 @@ function Navbar({curactive}) {
     },
     {
       menu: "FAQS",
-      link: "/",
+      link: "/faq",
     },
     {
       menu: "TERMS OF USE",
-      link: "/",
+      link: "/termsofuse",
     },
   ];
 

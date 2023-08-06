@@ -18,16 +18,16 @@ export default function Chat({
   currentUserAddress,
   currentUserName,
   readUser,
+  imgInd
 }) {
   const [message, setMessage] = useState("");
 
   const x = 1;
   const [chatData, setChatData] = useState({
-    name: "",
-    address: "",
+    name: localStorage.getItem("addr")!=null?localStorage.getItem("addr"):"",
+    address: localStorage.getItem("name")!=null?localStorage.getItem("name"):"",
   });
   const searchParams = useSearchParams();
-  // const urlParms= new URLSearchParams(window.location.search)
   useEffect(() => {
     var addr = searchParams.get("address");
     var name = searchParams.get("name");
@@ -40,7 +40,15 @@ export default function Chat({
           address: addr,
         };
       });
+      localStorage.setItem("addr",addr);
+      localStorage.setItem("name",name);
     } else {
+      setChatData((prev) => {
+        return {
+          name: localStorage.getItem('name'),
+          address: localStorage.getItem('addr'),
+        };
+      })
       return;
     }
   }, [searchParams.get("address"),friendMsg]);
@@ -49,7 +57,7 @@ export default function Chat({
     <div className={Style.Chat}>
       {currentUserName && currentUserAddress ? (
         <div className={Style.Chat_user_info}>
-          <Image src={images.accountName} alt="image" width={70} height={70} />
+          <Image src={images[`image` + `${(imgInd+1)%10}`]} alt="image" width={70} height={70} />
           <div className={Style.Chat_user_info_box}>
             <h4>{currentUserName}</h4>
             <p className={Style.show}>{currentUserAddress}</p>
@@ -71,7 +79,7 @@ export default function Chat({
                   {ele.sender == chatData.address ? (
                     <div className={Style.Chat_box_left_title}>
                       <Image
-                        src={images[`image` + `${x}`]}
+                        src={images[`image` + `${(imgInd+1)%10}`]}
                         alt="accountname"
                         width={50}
                         height={50}
@@ -84,7 +92,7 @@ export default function Chat({
                   ) : (
                     <div className={Style.Chat_box_left_title}>
                       <Image
-                        src={images[`image` + `${x}`]}
+                        src={images.accountName}
                         alt="accountname"
                         width={50}
                         height={50}

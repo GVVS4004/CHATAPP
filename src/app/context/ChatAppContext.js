@@ -75,7 +75,7 @@ const ChatAppProvider = ({children})=>{
             const addMyFriend = await contract.addFriend(accountAddress,name);
             setLoading(true);
             await addMyFriend.wait();
-            console.log("context",loading);
+            // console.log("context",loading);
             setLoading(false);
             router.push("/");
             window.location.reload()

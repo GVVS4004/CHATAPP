@@ -18,6 +18,7 @@ import friends from "./friends.png";
 import friends2 from "./friends2.png";
 import accountName from "./acountName.png";
 import dot from "./dot.png";
+import contactus from "./contactus.png"
 import loader from "./loader.gif";
 import image1 from "./img1.gif";
 import image2 from "./img2.gif";
@@ -51,6 +52,7 @@ export default {
   friends2,
   accountName,
   dot,
+  contactus,
   loader,
   image1,
   image2,

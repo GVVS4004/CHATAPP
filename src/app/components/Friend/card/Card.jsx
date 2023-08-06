@@ -14,7 +14,7 @@ export default function Card({readMessage, ele, readUser,ind}) {
             <div className={Style.Card_box}>
                 <div className={Style.Card_box_left}>
                     <Image
-                        src={images.accountName}
+                        src={images[`image` + `${(ind+1)%10}`]}
                         alt="username"
                         width={50}
                         height={50}

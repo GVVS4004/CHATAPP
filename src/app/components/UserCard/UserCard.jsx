@@ -7,7 +7,7 @@ export default function UserCard({ele, ind, addFriends}) {
   return (
     <div className={Style.UserCard}>
       <div className={Style.UserCard_box}>
-        <Image className={Style.UserCard_box_img} src={images[`image${(ind+1)}`]} alt='user' height={100} width={100}/>
+        <Image className={Style.UserCard_box_img} src={images[`image${(ind+1)%10}`]} alt='user' height={100} width={100}/>
         <div className={Style.UserCard_box_info}>
           <h3>{ele.name}</h3>
           <p>{ele.accountAddress.slice(0,25)}...</p>
