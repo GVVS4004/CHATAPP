@@ -3,6 +3,8 @@
 require("dotenv").config();
 // import chatAppJSON from '../../../artifacts/contracts/ChatApp.sol/ChatApp.json'
 import chatAppJSON from './ChatApp.json'
-const ChatAppAddress=process.env.CONTRACT_ADDRESS==null?process.env.NEXT_PUBLIC_CONTRACT_ADDRESS:process.env.CONTRACT_ADDRESS;
+console.log(process.env.CONTRACT_ADDRESS);
+// const ChatAppAddress=process.env.CONTRACT_ADDRESS==null?process.env.NEXT_PUBLIC_CONTRACT_ADDRESS:process.env.CONTRACT_ADDRESS;
+const ChatAppAddress="0x7a39520F9ded5Cd29954d742B9378155506bC057"
 const ChatAppABI = chatAppJSON.abi;
 export {ChatAppAddress,ChatAppABI};
